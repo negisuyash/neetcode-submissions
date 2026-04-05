@@ -1,0 +1,20 @@
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> res = new ArrayList<>();
+        for(int i=0;i<nums.length-1;i++){
+            int left = i+1, right = nums.length-1;
+            while(left < right){
+                if(nums[i]+nums[left]+nums[right]==0){
+                    List<Integer> list = new ArrayList<>();
+                    list.add(nums[i]); list.add(nums[left]); list.add(nums[right]);
+                    if(!res.contains(list)) res.add(list);
+                    left++; right--;
+                }
+                else if(nums[i]+nums[left]+nums[right]>0)   right--;
+                else left++;
+            }
+        }
+        return res;
+    }
+}
